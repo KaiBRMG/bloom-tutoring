@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-11T20:09:27Z",
+  "title": "Design System: Bloom Tutoring",
+  "extensions": {
+    "colorMeta": {
+      "garden-cream": { "role": "neutral", "displayName": "Garden Cream", "canonical": "#fbf6ee", "tonalRamp": ["#3a3226", "#59493a", "#7a6650", "#a5896a", "#c9ab86", "#e6d5b8", "#f4e9d4", "#fbf6ee"] },
+      "leaf-green": { "role": "primary", "displayName": "Leaf Green", "canonical": "#18765f", "tonalRamp": ["#06140f", "#0c2b21", "#124334", "#175a48", "#18765f", "#3d9880", "#7fbfab", "#bfe0d5"] },
+      "sprout-mint": { "role": "secondary", "displayName": "Sprout Mint", "canonical": "#39bf9a", "tonalRamp": ["#0c2620", "#17493c", "#226c59", "#2d8f76", "#39bf9a", "#6bd1b6", "#9de3d1", "#cff1e8"] },
+      "mint-mist": { "role": "secondary", "displayName": "Mint Mist", "canonical": "#eaf7f2", "tonalRamp": ["#173a30", "#255c4c", "#3a7f6a", "#5aa38c", "#8ec4b1", "#c1e0d4", "#ddefe6", "#eaf7f2"] },
+      "marigold-orange": { "role": "tertiary", "displayName": "Marigold Orange", "canonical": "#e76943", "tonalRamp": ["#3d1a0d", "#69301a", "#974527", "#c65733", "#e76943", "#ef8e6f", "#f5b39b", "#fad8c7"] },
+      "marigold-shadow": { "role": "tertiary", "displayName": "Marigold Shadow", "canonical": "#b6502f", "tonalRamp": ["#2e1409", "#4c2211", "#6f3119", "#934021", "#b6502f", "#cc7454", "#e09c81", "#f0c5b3"] },
+      "marigold-blush": { "role": "tertiary", "displayName": "Marigold Blush", "canonical": "#fdece1", "tonalRamp": ["#5c3116", "#7d4522", "#a35d30", "#c97a45", "#e79c6d", "#f2bd9e", "#f9d8c4", "#fdece1"] },
+      "peach-bloom": { "role": "tertiary", "displayName": "Peach Bloom", "canonical": "#f7a87b", "tonalRamp": ["#4a2410", "#6e381a", "#954d26", "#bd6636", "#f7a87b", "#f9bc99", "#fbd0b6", "#fde4d3"] },
+      "peach-mist": { "role": "tertiary", "displayName": "Peach Mist", "canonical": "#fdf3ea", "tonalRamp": ["#603a1e", "#82502b", "#a86a3b", "#ce8951", "#eaad7c", "#f4c8a5", "#f9dcc3", "#fdf3ea"] },
+      "sand-tan": { "role": "neutral", "displayName": "Sand Tan", "canonical": "#e9ddc8", "tonalRamp": ["#3b3120", "#5c4c34", "#7f6a4a", "#a38a63", "#c4ac88", "#e9ddc8", "#f0e7d8", "#f7f1e6"] },
+      "sand-tan-deep": { "role": "neutral", "displayName": "Sand Tan Deep", "canonical": "#d9c9a8", "tonalRamp": ["#332a17", "#514328", "#71603d", "#957e56", "#b6a075", "#d9c9a8", "#e6dac0", "#f1e9d8"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Baloo 2 Display", "purpose": "Hero headline, section headlines, card/testimonial titles. Never used for body copy." },
+      "body": { "displayName": "Nunito Body", "purpose": "All paragraph copy, labels, and form fields. Never lighter than semibold (600)." }
+    },
+    "shadows": [
+      { "name": "button-press", "value": "0 6px 0 var(--marigold-shadow)", "purpose": "Flat offset shadow under primary buttons at rest; compresses to 0 3px 0 on hover/press." },
+      { "name": "card-flat", "value": "0 12px 0 rgba(0,0,0,0.08)", "purpose": "Flat offset shadow under service cards at rest." }
+    ],
+    "motion": [
+      { "name": "float-y", "value": "floatY 7s ease-in-out infinite", "purpose": "Ambient vertical drift for large decorative blobs." },
+      { "name": "float-y2", "value": "floatY2 6s ease-in-out infinite", "purpose": "Ambient vertical drift, inverse phase, for a second blob layer." },
+      { "name": "wiggle", "value": "wiggle 4s ease-in-out infinite", "purpose": "Slow rotation wiggle for small decorative squares." },
+      { "name": "pop-in", "value": "popIn 0.8s ease-out both", "purpose": "Entrance animation for hero content: fade + rise + scale." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call-to-action button (e.g. \"Book a Free Chat\"). Pill-shaped, flat offset shadow, presses down on hover.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Book a Free Chat</a>",
+      "css": ".ds-btn-primary { display: inline-block; background: #e76943; color: #ffffff; font-weight: 800; font-size: 18px; padding: 16px 32px; border-radius: 9999px; text-decoration: none; box-shadow: 0 7px 0 #b6502f; transition: transform 0.15s, box-shadow 0.15s; } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { transform: translateY(3px); box-shadow: 0 3px 0 #b6502f; outline: none; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ghost/outline button (e.g. \"See Our Services\"). Inverts to solid fill on hover.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">See Our Services</a>",
+      "css": ".ds-btn-secondary { display: inline-block; background: #ffffff; color: #18765f; font-weight: 800; font-size: 18px; padding: 16px 32px; border-radius: 9999px; border: 3px solid #18765f; text-decoration: none; transition: background 0.2s, color 0.2s; } .ds-btn-secondary:hover, .ds-btn-secondary:focus-visible { background: #18765f; color: #ffffff; outline: none; }"
+    },
+    {
+      "name": "Eyebrow Badge",
+      "kind": "chip",
+      "refersTo": "badge-pill",
+      "description": "Small rotated pill badge used above headlines and section tags.",
+      "html": "<span class=\"ds-badge\"><span class=\"ds-badge-dot\"></span>School Readiness → Grade 12</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #e76943; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; padding: 8px 16px; border-radius: 9999px; transform: rotate(-2deg); } .ds-badge-dot { width: 8px; height: 8px; border-radius: 9999px; background: #39bf9a; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "Colored service card with asymmetric torn-corner radius; lifts and rotates on hover.",
+      "html": "<div class=\"ds-card-service\"><div class=\"ds-card-icon\">M</div><h3 class=\"ds-card-title\">Math Specialization</h3><p class=\"ds-card-desc\">From basic arithmetic through AP Math.</p></div>",
+      "css": ".ds-card-service { background: #39bf9a; border-radius: 28px 28px 60px 28px; padding: 32px 26px; box-shadow: 0 12px 0 rgba(0,0,0,0.08); transition: transform 0.2s; } .ds-card-service:hover { transform: translateY(-8px) rotate(1deg); } .ds-card-icon { width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.28); border-radius: 16px; transform: rotate(-6deg); color: #fff; font-weight: 800; font-size: 24px; margin-bottom: 18px; } .ds-card-title { color: #fff; font-weight: 700; font-size: 20px; margin: 0 0 10px; } .ds-card-desc { color: rgba(255,255,255,0.9); font-weight: 600; font-size: 15.5px; line-height: 1.6; margin: 0; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Form field used in the contact form (name, grade, message).",
+      "html": "<input class=\"ds-input\" placeholder=\"Jane Smith\" />",
+      "css": ".ds-input { width: 100%; background: #ffffff; border: 2px solid #e9ddc8; border-radius: 12px; padding: 14px 16px; font-size: 16px; font-weight: 600; color: #18765f; outline: none; transition: border-color 0.15s; } .ds-input:focus { border-color: #18765f; } .ds-input::placeholder { color: #9a9184; font-weight: 400; }"
+    },
+    {
+      "name": "FAQ Accordion Item",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Collapsible FAQ row with a rotating plus-icon toggle.",
+      "html": "<div class=\"ds-faq\"><div class=\"ds-faq-row\"><h3 class=\"ds-faq-q\">What ages or grades do you tutor?</h3><span class=\"ds-faq-toggle\">+</span></div><p class=\"ds-faq-a\">From school readiness through Grade 12, across every core subject.</p></div>",
+      "css": ".ds-faq { background: #ffffff; border-radius: 16px; padding: 22px 26px; cursor: pointer; } .ds-faq-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; } .ds-faq-q { margin: 0; font-weight: 700; font-size: 18px; color: #18765f; } .ds-faq-toggle { flex: none; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: #39bf9a; color: #fff; font-weight: 800; font-size: 18px; transform: rotate(45deg); transition: transform 0.2s; } .ds-faq-a { margin: 14px 0 0; font-weight: 600; font-size: 15.5px; line-height: 1.6; color: #4a5952; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Blooming Garden",
+    "overview": "Bloom Tutoring's interface reads as a garden in bloom: organic blob shapes float and drift behind circular photo frames, leaf-green and marigold-orange sit against a soft cream ground, and everything is built from rounded, growth-shaped forms rather than hard rectangles. The system is warm and reassuring first — nothing sharp, sterile, or clinical is allowed near it — while still projecting the confidence and competence a parent needs to trust a tutor with their child's education through Grade 12 and AP-level work.\n\nThe system deliberately avoids two failure modes: the sterile SaaS-dashboard look of generic edtech (no cold grays, no boxy cards, no corporate blue), and cutesy toy-box childishness that would undersell older students' work. It threads that needle with an adult-credible warmth — organic, botanical, hand-tended, but not juvenile.\n\nComponents lean bouncy and confident: buttons press down on hover, cards lift and tilt slightly, decorative shapes float and wiggle continuously at low opacity. The palette is a garden bed, not a classroom poster — leaf-green and sprout-mint as growth colors, marigold-orange and peach-bloom as bloom colors, cream as the soil/paper ground.",
+    "keyCharacteristics": [
+      "Organic blob and circle forms over rectangles wherever a shape is decorative or photographic.",
+      "Warm, growth-themed palette: greens/mints for trust and stability, orange/peach for warmth and action.",
+      "Rounded, chunky display type (Baloo 2) paired with a friendly, readable body face (Nunito).",
+      "Continuous low-amplitude ambient motion (floating blobs, wiggling squares) that never demands attention.",
+      "Bold, forceful primary color blocking on cards and buttons — color carries hierarchy more than size does."
+    ],
+    "rules": [
+      { "name": "The Single Orange Rule", "body": "Marigold Orange appears only on things a visitor can act on (buttons, the CTA badge, the enquiry send button). It never appears as decoration or section background — if a user sees orange, it's clickable.", "section": "colors" },
+      { "name": "The No-Light-Text Rule", "body": "Body copy is never lighter than semibold (600). Regular weight (400) is reserved for form placeholder text only — every other word on the page is built to feel confidently said, not murmured.", "section": "typography" }
+    ],
+    "dos": [
+      "Do keep Marigold Orange exclusive to actionable elements (The Single Orange Rule).",
+      "Do use irregular organic border-radius blobs for decorative shapes, not plain circles or rectangles.",
+      "Do set body text at semibold (600) or heavier; never use regular-weight paragraph text outside form placeholders.",
+      "Do pair every primary button with a physical \"press down\" hover (translate + shadow compression), not a simple opacity or color fade.",
+      "Do keep decorative motion slow, continuous, and low-amplitude (float/wiggle) — never abrupt or attention-grabbing."
+    ],
+    "donts": [
+      "Don't introduce cold grays, corporate blues, or hard-edged rectangular cards — they break the garden/growth identity and read as clinical edtech.",
+      "Don't push the aesthetic into toy-box childishness (no cartoon mascots, no primary-school clip art); the audience includes parents of Grade 12/AP students.",
+      "Don't use soft blurred drop shadows; the system's current depth language is flat color blocking plus solid offset shadows, not ambient blur.",
+      "Don't align decorative squares/dots to the grid — they're rotated off-axis on purpose.",
+      "Don't fabricate real-sounding testimonial photography or names; the testimonial avatars are intentionally placeholder icons until real photos exist."
+    ]
+  }
+}

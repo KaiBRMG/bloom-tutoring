@@ -1,26 +1,173 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Neutrals */
+  --color-cream: #fbf6ee;
+  --color-tan: #e9ddc8;
+  --color-tan-dark: #d9c9a8;
+
+  /* Greens */
+  --color-green: #18765f;
+  --color-mint: #39bf9a;
+  --color-mint-light: #eaf7f2;
+
+  /* Oranges — --color-orange is the WCAG AA-safe shade used anywhere it
+     carries text or sits under white text (buttons, badges, CTAs).
+     --color-orange-bright is the original, higher-chroma tone reserved for
+     small decorative shapes that never carry text. */
+  --color-orange: #b83c20;
+  --color-orange-bright: #e76943;
+  --color-orange-dark: #b6502f;
+  --color-orange-light: #fdece1;
+
+  /* Peach */
+  --color-peach: #f7a87b;
+  --color-peach-light: #fdf3ea;
+
+  /* Card ink — dark text/icon color for content sitting directly on the
+     lighter fills (Sprout Mint, Peach Bloom) where white text fails contrast. */
+  --color-card-ink: #2f3d38;
+
+  /* Body copy tints */
+  --color-ink: #3a4a44;
+  --color-ink-soft: #4a5952;
+  --color-ink-warm: #4a3b30;
+  --color-disclaimer: #786e60;
+  --color-avatar-bg: #dff0e8;
+
+  /* Text-on-Leaf-Green tints, lightened for AA contrast */
+  --color-mist-on-green: #e0efe8;
+  --color-mist-on-green-soft: #dcf0e8;
+
+  /* Translucent overlay for icon chips on solid-color card fills */
+  --color-chip-overlay: rgba(255, 255, 255, 0.28);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-display: var(--font-baloo-2);
+  --font-sans: var(--font-nunito);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-cream: var(--color-cream);
+  --color-tan: var(--color-tan);
+  --color-tan-dark: var(--color-tan-dark);
+  --color-green: var(--color-green);
+  --color-mint: var(--color-mint);
+  --color-mint-light: var(--color-mint-light);
+  --color-orange: var(--color-orange);
+  --color-orange-bright: var(--color-orange-bright);
+  --color-orange-dark: var(--color-orange-dark);
+  --color-orange-light: var(--color-orange-light);
+  --color-peach: var(--color-peach);
+  --color-peach-light: var(--color-peach-light);
+  --color-card-ink: var(--color-card-ink);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-warm: var(--color-ink-warm);
+  --color-disclaimer: var(--color-disclaimer);
+  --color-avatar-bg: var(--color-avatar-bg);
+  --color-mist-on-green: var(--color-mist-on-green);
+  --color-mist-on-green-soft: var(--color-mist-on-green-soft);
+  --color-chip-overlay: var(--color-chip-overlay);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--color-cream);
+  font-family: var(--font-nunito), sans-serif;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  a {
+    color: var(--color-green);
+    text-decoration: none;
+  }
+}
+
+::selection {
+  background: var(--color-peach);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-green);
+  outline-offset: 3px;
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-18px) rotate(var(--r, 0deg));
+  }
+}
+
+@keyframes floatY2 {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(14px) rotate(var(--r, 0deg));
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+.animate-float-y {
+  animation: floatY 7s ease-in-out infinite;
+}
+
+.animate-float-y2 {
+  animation: floatY2 6s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 4s ease-in-out infinite;
+}
+
+.animate-pop-in {
+  animation: popIn 0.8s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-y,
+  .animate-float-y2,
+  .animate-wiggle {
+    animation: none;
+  }
+
+  .animate-pop-in {
+    animation: popInReduced 0.3s ease-out both;
+  }
+}
+
+@keyframes popInReduced {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
