@@ -193,6 +193,7 @@ export default function Home() {
               width={1000}
               height={1000}
               priority
+              sizes="44px"
               className="block h-9 w-9 flex-none sm:h-11 sm:w-11"
             />
             <span className="flex flex-col leading-none">
@@ -365,6 +366,7 @@ export default function Home() {
                   alt="A happy student"
                   width={490}
                   height={490}
+                  sizes="(max-width: 640px) 80vw, 320px"
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -438,6 +440,7 @@ export default function Home() {
                   alt="Roxanne, founder of Bloom Tutoring"
                   width={1448}
                   height={1086}
+                  sizes="(max-width: 640px) 85vw, 320px"
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -560,6 +563,7 @@ export default function Home() {
                   alt="Bonnie Naidoo, Learning Support Specialist at Bloom Tutoring"
                   width={818}
                   height={1280}
+                  sizes="(max-width: 640px) 85vw, 320px"
                   className="h-full w-full object-cover"
                   style={{ objectPosition: "50% 22%" }}
                 />
@@ -580,7 +584,7 @@ export default function Home() {
           aria-labelledby="services-heading"
           className="relative overflow-hidden bg-mint-light px-5 py-16 sm:px-16 sm:py-24"
         >
-          <div aria-hidden="true" className="animate-float-y2 absolute left-[2%] top-[6%] h-[26px] w-[26px] rounded-full bg-peach" />
+          <div aria-hidden="true" className="animate-float-y2 absolute left-4 top-4 sm:left-[2%] sm:top-[6%] h-[26px] w-[26px] rounded-full bg-peach" />
           <div className="relative mx-auto mb-12 max-w-2xl text-center">
             <h2 id="services-heading" className="m-0 mb-3.5 font-[family-name:var(--font-display)] text-4xl font-extrabold text-green sm:text-5xl">
               Services
@@ -800,11 +804,11 @@ export default function Home() {
                   <span className="mb-1.5 block text-[13px] font-extrabold uppercase tracking-wide text-green">
                     I am a...
                   </span>
-                  <div className="flex gap-5 py-1">
+                  <div className="flex gap-5">
                     {(["Student", "Parent"] as const).map((option) => (
                       <label
                         key={option}
-                        className="flex items-center gap-2 text-base font-semibold text-ink"
+                        className="flex items-center gap-2 py-2.5 text-base font-semibold text-ink"
                       >
                         <input
                           type="radio"
@@ -892,6 +896,7 @@ export default function Home() {
               alt=""
               width={1000}
               height={1000}
+              sizes="24px"
               className="block h-6 w-6 flex-none"
             />
             <span className="flex flex-col leading-none">
