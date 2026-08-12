@@ -357,7 +357,13 @@ export default function Home() {
                 style={{ borderRadius: "48% 52% 55% 45%/52% 48% 55% 45%" }}
               />
               <div className="relative h-[min(320px,80vw)] w-[min(320px,80vw)] overflow-hidden rounded-full border-[6px] border-white shadow-[0_18px_0_rgba(24,118,95,0.12)]">
-                <PlaceholderPhoto label="Photo of a happy student" />
+                <Image
+                  src="/images/student.png"
+                  alt="A happy student"
+                  width={490}
+                  height={490}
+                  className="h-full w-full object-cover"
+                />
               </div>
               <div className="animate-float-y2 absolute -bottom-[6%] -left-[14%] flex -rotate-3 items-center gap-2.5 rounded-2xl bg-white px-4.5 py-3 shadow-[0_8px_0_rgba(24,118,95,0.1)]">
                 <span
@@ -546,7 +552,14 @@ export default function Home() {
                 style={{ borderRadius: "45% 55% 50% 50%/55% 45% 55% 45%" }}
               />
               <div className="relative mx-auto aspect-square w-[min(320px,85vw)] overflow-hidden rounded-full border-[6px] border-white shadow-[0_16px_0_rgba(24,118,95,0.1)]">
-                <PlaceholderPhoto label="Photo of Bonnie Naidoo" />
+                <Image
+                  src="/images/bonnie.jpg"
+                  alt="Bonnie Naidoo, Learning Support Specialist at Bloom Tutoring"
+                  width={818}
+                  height={1280}
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "50% 22%" }}
+                />
               </div>
               <div aria-hidden="true" className="animate-float-y absolute -bottom-[4%] -right-[6%] h-[30px] w-[30px] rounded-full bg-mint" />
               <div
