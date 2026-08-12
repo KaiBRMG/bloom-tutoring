@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 const FEATURES = [
   { letter: "00", color: "var(--color-mint)", light: true, label: "School Readiness → Grade 12" },
-  { letter: "1:1", color: "var(--color-orange)", light: false, label: "1-on-1 Personalized Plans" },
+  { letter: "1:1", color: "var(--color-orange)", light: false, label: "1-on-1 Personalised Plans" },
   { letter: "AP", color: "var(--color-green)", light: false, label: "Core Subjects incl. AP Math" },
   { letter: "4+", color: "var(--color-peach)", light: true, label: "Years of Proven Results" },
 ];
@@ -61,7 +61,7 @@ const WHY_ITEMS = [
   },
   {
     n: 3,
-    title: "Truly personalized plans",
+    title: "Truly personalised plans",
     desc: "No cookie-cutter worksheets. Every plan is built around how your child actually learns.",
   },
   {
@@ -101,7 +101,7 @@ const FAQS = [
   },
   {
     q: "Do you tutor online or in person?",
-    a: "Sessions run online, so your child can learn from the comfort of home — wherever you are.",
+    a: "Both — we offer online sessions for learning from the comfort of home, as well as in-person sessions, all 1-on-1.",
   },
   {
     q: "How do I know which tutor is right for my child?",
@@ -481,14 +481,42 @@ export default function Home() {
         {/* Co-founder */}
         <section aria-labelledby="cofounder-heading" className="relative overflow-hidden bg-white px-5 pb-16 pt-5 sm:px-16 sm:pb-24 sm:pt-8">
           <div aria-hidden="true" className="absolute bottom-[6%] left-[2%] h-[130px] w-[130px] rounded-full bg-orange-light opacity-70" />
-          <div className="relative mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-[minmax(260px,1.15fr)_minmax(260px,0.85fr)] md:gap-16">
-            <div>
+          <div className="cofounder-grid relative mx-auto max-w-3xl md:max-w-6xl">
+            <div className="text-center [grid-area:header] md:text-left">
               <span className="mb-4 inline-block -rotate-2 rounded-full bg-orange-light px-4 py-1.5 text-[13px] font-extrabold uppercase tracking-wider text-orange">
                 Co-Founder
               </span>
               <h2 id="cofounder-heading" className="m-0 mb-3.5 font-[family-name:var(--font-display)] text-3xl font-extrabold text-green sm:text-4xl">
                 Meet Bonnie Naidoo
               </h2>
+            </div>
+
+            <div className="relative w-fit [grid-area:photo] justify-self-center">
+              <div
+                aria-hidden="true"
+                className="absolute -left-[6%] -top-[8%] h-[114%] w-[112%] bg-mint-light"
+                style={{ borderRadius: "45% 55% 50% 50%/55% 45% 55% 45%" }}
+              />
+              <div className="relative mx-auto aspect-square w-[min(320px,85vw)] overflow-hidden rounded-full border-[6px] border-white shadow-[0_16px_0_rgba(24,118,95,0.1)]">
+                <Image
+                  src="/images/bonnie.jpg"
+                  alt="Bonnie Naidoo, Learning Support Specialist at Bloom Tutoring"
+                  width={818}
+                  height={1280}
+                  sizes="(max-width: 640px) 85vw, 320px"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "50% 22%" }}
+                />
+              </div>
+              <div aria-hidden="true" className="animate-float-y absolute -bottom-[4%] -right-[6%] h-[30px] w-[30px] rounded-full bg-mint" />
+              <div
+                aria-hidden="true"
+                className="animate-wiggle absolute left-[2%] top-0 h-5 w-5 rounded-md"
+                style={{ background: "var(--color-peach)", transform: "rotate(20deg)" }}
+              />
+            </div>
+
+            <div className="[grid-area:text]">
               <p className="m-0 mb-6 text-[17px] font-semibold leading-relaxed text-ink">
                 Bonnie Naidoo is an experienced educator and Learning Support Specialist who
                 is passionate about helping learners overcome challenges, build strong
@@ -550,30 +578,6 @@ export default function Home() {
                 learner doesn&apos;t need more work — they need the right approach.
                 <span aria-hidden="true" className="text-[1.3em] text-mint">&rdquo;</span>
               </p>
-            </div>
-            <div className="relative justify-self-center">
-              <div
-                aria-hidden="true"
-                className="absolute -left-[6%] -top-[8%] h-[114%] w-[112%] bg-mint-light"
-                style={{ borderRadius: "45% 55% 50% 50%/55% 45% 55% 45%" }}
-              />
-              <div className="relative mx-auto aspect-square w-[min(320px,85vw)] overflow-hidden rounded-full border-[6px] border-white shadow-[0_16px_0_rgba(24,118,95,0.1)]">
-                <Image
-                  src="/images/bonnie.jpg"
-                  alt="Bonnie Naidoo, Learning Support Specialist at Bloom Tutoring"
-                  width={818}
-                  height={1280}
-                  sizes="(max-width: 640px) 85vw, 320px"
-                  className="h-full w-full object-cover"
-                  style={{ objectPosition: "50% 22%" }}
-                />
-              </div>
-              <div aria-hidden="true" className="animate-float-y absolute -bottom-[4%] -right-[6%] h-[30px] w-[30px] rounded-full bg-mint" />
-              <div
-                aria-hidden="true"
-                className="animate-wiggle absolute left-[2%] top-0 h-5 w-5 rounded-md"
-                style={{ background: "var(--color-peach)", transform: "rotate(20deg)" }}
-              />
             </div>
           </div>
         </section>
