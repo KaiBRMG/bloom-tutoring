@@ -517,7 +517,7 @@ export default function Home() {
             </div>
 
             <div className="[grid-area:text]">
-              <p className="m-0 mb-6 text-[17px] font-semibold leading-relaxed text-ink">
+              <p className="m-0 mb-6 text-lg font-semibold leading-relaxed text-ink">
                 Bonnie Naidoo is an experienced educator and Learning Support Specialist who
                 is passionate about helping learners overcome challenges, build strong
                 foundations and feel confident in their ability to learn.
@@ -525,19 +525,19 @@ export default function Home() {
 
               <div className="mb-7 grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
                 <div className="rounded-2xl bg-mint-light px-5.5 py-5">
-                  <h3 className="m-0 mb-2.5 font-[family-name:var(--font-display)] text-base font-bold uppercase tracking-wide text-green">
+                  <h3 className="m-0 mb-2.5 font-[family-name:var(--font-display)] text-lg font-bold uppercase tracking-wide text-green">
                     Qualifications
                   </h3>
-                  <ul className="m-0 space-y-1 pl-4.5 text-[15px] font-semibold leading-relaxed text-ink">
+                  <ul className="m-0 space-y-1 pl-4.5 text-base font-semibold leading-relaxed text-ink">
                     <li>BEd, specialising in Physical Science</li>
                     <li>BEd Honours in Learning Support</li>
                   </ul>
                 </div>
                 <div className="rounded-2xl bg-peach-light px-5.5 py-5">
-                  <h3 className="m-0 mb-2.5 font-[family-name:var(--font-display)] text-base font-bold uppercase tracking-wide text-orange">
+                  <h3 className="m-0 mb-2.5 font-[family-name:var(--font-display)] text-lg font-bold uppercase tracking-wide text-orange">
                     Experience
                   </h3>
-                  <p className="m-0 text-[15px] font-semibold leading-relaxed text-ink">
+                  <p className="m-0 text-base font-semibold leading-relaxed text-ink">
                     10 years across CAPS, IEB and Cambridge curricula, incl. GDE and IEB
                     Matric Marking, 3 years as Learning Support Coordinator and 4 years as
                     Accommodations Officer.
@@ -573,11 +573,12 @@ export default function Home() {
                 confident in their own ability to learn.
               </p>
 
-              <p className="m-0 font-[family-name:var(--font-display)] text-xl font-bold leading-snug text-green sm:text-2xl">
-                <span aria-hidden="true" className="text-[1.3em] text-mint">&ldquo;</span>Sometimes, a
+              <p className="m-0 mb-4.5 font-[family-name:var(--font-display)] text-2xl font-bold leading-snug text-green sm:text-3xl">
+                <span aria-hidden="true" className="text-[1.4em] text-mint">&ldquo;</span>Sometimes, a
                 learner doesn&apos;t need more work — they need the right approach.
-                <span aria-hidden="true" className="text-[1.3em] text-mint">&rdquo;</span>
+                <span aria-hidden="true" className="text-[1.4em] text-mint">&rdquo;</span>
               </p>
+              <p className="m-0 text-base font-bold text-ink-soft">— Bonnie Naidoo (Co-Founder)</p>
             </div>
           </div>
         </section>
