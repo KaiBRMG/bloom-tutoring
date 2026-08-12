@@ -146,6 +146,8 @@ function PlaceholderPhoto({ label }: { label: string }) {
 
 export default function Home() {
   const [name, setName] = useState("");
+  const [role, setRole] = useState<"Student" | "Parent">("Parent");
+  const [phone, setPhone] = useState("");
   const [grade, setGrade] = useState("");
   const [message, setMessage] = useState("");
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
@@ -172,9 +174,10 @@ export default function Home() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [mobileMenuOpen]);
 
-  const subject = encodeURIComponent(`Enquiry from ${name || "a parent"}`);
+  const formattedName = name ? `${name} (${role})` : role;
+  const subject = encodeURIComponent(`Enquiry from ${formattedName}`);
   const body = encodeURIComponent(
-    `Parent name: ${name}\nChild's grade: ${grade}\n\n${message}`
+    `Name: ${formattedName}\nCell phone: ${phone}\nGrade & study area: ${grade}\n\n${message}`
   );
   const mailtoHref = `mailto:Bloomtutoringadmin@gmail.com?subject=${subject}&body=${body}`;
 
@@ -781,12 +784,12 @@ export default function Home() {
             <div className="rounded-[28px] bg-white p-6.5 shadow-[0_14px_0_rgba(24,118,95,0.08)] sm:p-10">
               <div className="grid gap-4">
                 <div>
-                  <label htmlFor="parent-name" className="mb-1.5 block text-[13px] font-extrabold uppercase tracking-wide text-green">
-                    Parent Name
+                  <label htmlFor="my-name" className="mb-1.5 block text-[13px] font-extrabold uppercase tracking-wide text-green">
+                    My Name
                   </label>
                   <input
-                    id="parent-name"
-                    name="parentName"
+                    id="my-name"
+                    name="myName"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Jane Smith"
@@ -794,15 +797,52 @@ export default function Home() {
                   />
                 </div>
                 <div>
+                  <span className="mb-1.5 block text-[13px] font-extrabold uppercase tracking-wide text-green">
+                    I am a...
+                  </span>
+                  <div className="flex gap-5 py-1">
+                    {(["Student", "Parent"] as const).map((option) => (
+                      <label
+                        key={option}
+                        className="flex items-center gap-2 text-base font-semibold text-ink"
+                      >
+                        <input
+                          type="radio"
+                          name="role"
+                          value={option}
+                          checked={role === option}
+                          onChange={() => setRole(option)}
+                          className="h-4 w-4 accent-green"
+                        />
+                        {option}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="phone-number" className="mb-1.5 block text-[13px] font-extrabold uppercase tracking-wide text-green">
+                    Cell Phone Number
+                  </label>
+                  <input
+                    id="phone-number"
+                    name="phoneNumber"
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="082 123 4567"
+                    className="w-full rounded-xl border-2 border-tan px-4 py-3.5 text-base font-[family-name:var(--font-sans)] outline-none focus:border-green"
+                  />
+                </div>
+                <div>
                   <label htmlFor="child-grade" className="mb-1.5 block text-[13px] font-extrabold uppercase tracking-wide text-green">
-                    Child&apos;s Grade
+                    Grade &amp; Study Area
                   </label>
                   <input
                     id="child-grade"
                     name="childGrade"
                     value={grade}
                     onChange={(e) => setGrade(e.target.value)}
-                    placeholder="e.g. Grade 6"
+                    placeholder="e.g. Grade 6  Maths and English"
                     className="w-full rounded-xl border-2 border-tan px-4 py-3.5 text-base font-[family-name:var(--font-sans)] outline-none focus:border-green"
                   />
                 </div>
