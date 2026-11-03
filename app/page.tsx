@@ -3,48 +3,34 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const FEATURES = [
-  { letter: "00", color: "var(--color-mint)", light: true, label: "School Readiness → Grade 12" },
-  { letter: "1:1", color: "var(--color-orange)", light: false, label: "1-on-1 Personalised Plans" },
-  { letter: "AP", color: "var(--color-green)", light: false, label: "Core Subjects incl. AP Math" },
-  { letter: "4+", color: "var(--color-peach)", light: true, label: "Years of Proven Results" },
-];
-
 const SERVICES = [
   {
-    letter: "E",
+    letter: "00",
     color: "var(--color-mint)",
     light: true,
     title: "Early Learners (Grade 00)",
     desc: "School readiness — building foundational literacy, numeracy, and focus skills before formal schooling begins.",
   },
   {
-    letter: "A",
+    letter: "1–12",
     color: "var(--color-green)",
     light: false,
-    title: "Grades 00–12, All Subjects",
-    desc: "All core subjects, tailored to each student's curriculum and pace.",
+    title: "All Core Subjects",
+    desc: "Grades 00–12, tailored to each student's curriculum and pace.",
   },
   {
-    letter: "M",
+    letter: "123",
     color: "var(--color-orange)",
     light: false,
-    title: "Math Specialization",
-    desc: "From basic arithmetic through AP Math.",
+    title: "Maths Specialisation",
+    desc: "From basic arithmetic up to AP (Advanced Placement) level.",
   },
   {
-    letter: "X",
+    letter: "A+",
     color: "var(--color-peach)",
     light: true,
-    title: "Exam Prep",
-    desc: "Targeted support for tests, finals, and standardized exams.",
-  },
-  {
-    letter: "H",
-    color: "var(--color-mint)",
-    light: true,
-    title: "Homework Help",
-    desc: "Ongoing support to keep students on track week to week.",
+    title: "Exam Prep & Homework Help",
+    desc: "Targeted support for tests, finals, and standardised exams, plus ongoing help to keep students on track week to week.",
   },
 ];
 
@@ -56,25 +42,23 @@ const WHY_ITEMS = [
   },
   {
     n: 2,
-    title: "We meet every child where they are",
-    desc: 'From school readiness to AP Math, all subjects, all grade levels — no student is "too behind" or "too advanced" for us.',
+    title: "Truly personalised, never cookie-cutter",
+    desc: 'No worksheets for the sake of worksheets, and no student is "too behind" or "too advanced" for us. Every plan is built around how your child actually learns.',
   },
   {
     n: 3,
-    title: "Truly personalised plans",
-    desc: "No cookie-cutter worksheets. Every plan is built around how your child actually learns.",
+    title: "Experienced, hand-picked tutors",
+    desc: "A growing team chosen for both subject expertise and genuine care for students.",
   },
   {
     n: 4,
-    title: "Experienced, hand-picked tutors",
-    desc: "Over 4+ years of proven results, with a growing team chosen for both subject expertise and genuine care for students.",
-  },
-  {
-    n: 5,
     title: "We see the whole child",
     desc: "We know the workload can feel endless and success can feel out of reach. Our job is to change that feeling, not just the grades.",
   },
 ];
+
+// Flip to true to show the "What Families Say" section again.
+const SHOW_TESTIMONIALS = false;
 
 const TESTIMONIALS = [
   {
@@ -97,11 +81,23 @@ const TESTIMONIALS = [
 const FAQS = [
   {
     q: "What ages or grades do you tutor?",
-    a: "From school readiness (our Early Learners program) all the way through Grade 12, across every core subject.",
+    a: "From school readiness (our Early Learners program) all the way through Grade 12, across every core subject, with a special focus in Maths from arithmetic through AP level.",
   },
   {
     q: "Do you tutor online or in person?",
-    a: "Both — we offer online sessions for learning from the comfort of home, as well as in-person sessions, all 1-on-1.",
+    a: "Both, always 1-on-1. Online sessions work from anywhere, and in-person sessions are available for families in the Pretoria area.",
+  },
+  {
+    q: "Can you help a child with ADHD or learning difficulties?",
+    a: "This is close to home for us. Our founder, Roxanne, grew up with ADHD, and our co-founder, Bonnie Naidoo, is a Learning Support Specialist who has worked alongside educational psychologists. We match your child with a tutor who suits how they learn.",
+  },
+  {
+    q: "Which curricula do you work with?",
+    a: "CAPS, IEB and Cambridge, for both South African and international schools.",
+  },
+  {
+    q: "What happens after I send an enquiry?",
+    a: "We get back to you to talk through your child's needs and which tutor would be the right fit. Most families then start with weekly sessions.",
   },
   {
     q: "How do I know which tutor is right for my child?",
@@ -111,17 +107,83 @@ const FAQS = [
     q: "How often do sessions happen?",
     a: "Most families start with weekly sessions, then adjust frequency based on goals and upcoming exams.",
   },
-  {
-    q: "What subjects do you cover?",
-    a: "All core subjects from school readiness through Grade 12, with a special focus in Math from arithmetic through AP level.",
-  },
 ];
 
 const NAV_LINKS = [
+  { href: "#apply", label: "Apply" },
   { href: "#services", label: "Services" },
-  { href: "#why", label: "Why Us" },
+  { href: "#why", label: "Why Bloom" },
   { href: "#faq", label: "FAQ" },
 ];
+
+// 068 241 4458 in international format (South Africa, +27) with the leading 0 dropped.
+const WHATSAPP_HREF = `https://wa.me/27682414458?text=${encodeURIComponent(
+  "Hi Bloom Tutoring! I'd like to find out more about tutoring for my child."
+)}`;
+
+// mailto links can't carry attachments, so the body walks the candidate through
+// attaching their CV and filling in the blanks before they hit send.
+const TUTOR_APPLY_HREF = `mailto:Bloomtutoringadmin@gmail.com?subject=${encodeURIComponent(
+  "Tutor Application"
+)}&body=${encodeURIComponent(
+  `Hi Bloom Tutoring team,
+
+I'd like to apply to join your team of tutors.
+
+BEFORE YOU SEND (delete this section once done):
+1. Attach your CV to this email (PDF or Word).
+2. Fill in your details after each colon below.
+3. Add a few lines about yourself at the bottom: your teaching experience and why you'd like to tutor with Bloom.
+
+Full name:
+Cell phone:
+Subjects and grades you can tutor:
+Qualification or current studies:
+Curriculum experience (CAPS / IEB / Cambridge):
+Online, in person (Pretoria), or both:
+Days and times you're available:
+
+About me:
+
+`
+)}`;
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+    </svg>
+  );
+}
+
+function WhatsAppFab({ hidden }: { hidden: boolean }) {
+  return (
+    // The pop-in animation lives on this wrapper so its held end-state transform
+    // can't override the press-down hover on the link inside.
+    <div
+      className="animate-pop-in fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-40 [animation-delay:1.2s]"
+    >
+      <a
+        href={WHATSAPP_HREF}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with us on WhatsApp (opens in a new tab)"
+        aria-hidden={hidden}
+        tabIndex={hidden ? -1 : undefined}
+        className={`flex h-14 w-14 items-center justify-center gap-2.5 rounded-full border-4 border-white bg-green text-white shadow-[0_6px_0_rgba(47,61,56,0.35)] transition-[opacity,transform,box-shadow,visibility] duration-300 sm:w-auto sm:px-5 ${
+          hidden
+            ? "invisible translate-y-3 opacity-0"
+            : "hover:translate-y-[3px] hover:shadow-[0_3px_0_rgba(47,61,56,0.35)] active:translate-y-[3px] active:shadow-[0_3px_0_rgba(47,61,56,0.35)]"
+        }`}
+      >
+        <WhatsAppIcon className="h-7 w-7 flex-none" />
+        <span className="hidden whitespace-nowrap text-[15px] font-extrabold sm:inline">
+          Chat on WhatsApp
+        </span>
+      </a>
+    </div>
+  );
+}
 
 function Blob({ className, style }: { className?: string; style?: React.CSSProperties }) {
   return <div aria-hidden="true" className={className} style={style} />;
@@ -152,6 +214,7 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [contactInView, setContactInView] = useState(false);
 
   const menuToggleRef = useRef<HTMLButtonElement>(null);
   const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
@@ -174,6 +237,19 @@ export default function Home() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [mobileMenuOpen]);
 
+  // The contact section offers WhatsApp itself, so the floating button steps aside
+  // there instead of covering the enquiry form's send button.
+  useEffect(() => {
+    const contact = document.getElementById("contact");
+    if (!contact) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setContactInView(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(contact);
+    return () => observer.disconnect();
+  }, []);
+
   const formattedName = name ? `${name} (${role})` : role;
   const subject = encodeURIComponent(`Enquiry from ${formattedName}`);
   const body = encodeURIComponent(
@@ -182,7 +258,7 @@ export default function Home() {
   const mailtoHref = `mailto:Bloomtutoringadmin@gmail.com?subject=${subject}&body=${body}`;
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-x-clip">
       {/* Header */}
       <header className="sticky top-0 z-50 border-b-[3px] border-dashed border-tan-dark bg-cream/90 backdrop-blur-md">
         <div className="flex items-center justify-between px-5 py-4 sm:px-16">
@@ -200,7 +276,7 @@ export default function Home() {
               <span className="font-[family-name:var(--font-display)] text-2xl font-extrabold text-green sm:text-[28px]">
                 bloom
               </span>
-              <span className="mt-0.5 text-[10px] font-extrabold uppercase tracking-[0.2em] text-orange sm:text-[11px]">
+              <span className="mt-0.5 text-[11px] font-extrabold uppercase tracking-[0.2em] text-orange sm:text-xs">
                 Tutoring
               </span>
             </span>
@@ -213,7 +289,7 @@ export default function Home() {
             ))}
             <a
               href="#contact"
-              className="inline-block -rotate-2 rounded-full bg-orange px-5 py-2.5 text-sm font-extrabold text-white shadow-[0_6px_0_var(--color-orange-dark)] transition-transform hover:translate-y-[3px] hover:shadow-[0_3px_0_var(--color-orange-dark)]"
+              className="inline-block -rotate-2 rounded-full bg-orange px-5 py-2.5 text-sm font-extrabold text-white shadow-[0_6px_0_var(--color-orange-dark)] transition-transform hover:translate-y-[3px] hover:shadow-[0_3px_0_var(--color-orange-dark)] active:translate-y-[3px] active:shadow-[0_3px_0_var(--color-orange-dark)]"
             >
               Let&apos;s Talk
             </a>
@@ -222,7 +298,7 @@ export default function Home() {
           <div className="flex items-center gap-3 sm:hidden">
             <a
               href="#contact"
-              className="inline-flex -rotate-2 items-center rounded-full bg-orange px-4 py-3 text-sm font-extrabold text-white shadow-[0_5px_0_var(--color-orange-dark)] transition-transform hover:translate-y-[3px] hover:shadow-[0_2px_0_var(--color-orange-dark)]"
+              className="inline-flex -rotate-2 items-center rounded-full bg-orange px-4 py-3 text-sm font-extrabold text-white shadow-[0_5px_0_var(--color-orange-dark)] transition-transform hover:translate-y-[3px] hover:shadow-[0_2px_0_var(--color-orange-dark)] active:translate-y-[3px] active:shadow-[0_2px_0_var(--color-orange-dark)]"
             >
               Let&apos;s Talk
             </a>
@@ -341,13 +417,13 @@ export default function Home() {
               <div className="animate-pop-in flex flex-wrap gap-4" style={{ animationDelay: "0.3s" }}>
                 <a
                   href="#contact"
-                  className="inline-block rounded-full bg-orange px-8 py-4 text-lg font-extrabold text-white shadow-[0_7px_0_var(--color-orange-dark)] transition-transform hover:translate-y-1 hover:shadow-[0_3px_0_var(--color-orange-dark)]"
+                  className="inline-block rounded-full bg-orange px-8 py-4 text-lg font-extrabold text-white shadow-[0_7px_0_var(--color-orange-dark)] transition-transform hover:translate-y-1 hover:shadow-[0_3px_0_var(--color-orange-dark)] active:translate-y-1 active:shadow-[0_3px_0_var(--color-orange-dark)]"
                 >
-                  Book a Free Chat
+                  Let&apos;s Talk
                 </a>
                 <a
                   href="#services"
-                  className="inline-block rounded-full border-[3px] border-green bg-white px-8 py-4 text-lg font-extrabold text-green transition-colors hover:bg-green hover:text-white"
+                  className="inline-block rounded-full border-[3px] border-green bg-white px-8 py-4 text-lg font-extrabold text-green transition-colors hover:bg-green hover:text-white active:bg-green active:text-white"
                 >
                   See Our Services
                 </a>
@@ -391,56 +467,84 @@ export default function Home() {
             aria-hidden="true"
             viewBox="0 0 1440 90"
             preserveAspectRatio="none"
-            className="mt-10 block h-[70px] w-full"
+            className="mt-10 block h-[70px] w-full fill-mint-light"
           >
-            <path
-              d="M0,50 C240,100 480,0 720,45 C960,90 1200,10 1440,50 L1440,90 L0,90 Z"
-              fill="#ffffff"
-            />
+            <path d="M0,50 C240,100 480,0 720,45 C960,90 1200,10 1440,50 L1440,90 L0,90 Z" />
           </svg>
         </section>
 
-        {/* Feature strip */}
-        <section aria-label="Bloom Tutoring at a glance" className="relative -mt-px bg-white px-5 pb-12 sm:px-16 sm:pb-20">
-          <div className="mx-auto grid max-w-5xl grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5">
-            {FEATURES.map((f) => (
+        {/* Services */}
+        <section
+          id="services"
+          aria-labelledby="services-heading"
+          className="relative -mt-px scroll-mt-16 overflow-hidden bg-mint-light px-5 py-16 sm:px-16 sm:py-24"
+        >
+          <div aria-hidden="true" className="animate-float-y2 absolute left-4 top-4 sm:left-[2%] sm:top-[6%] h-[26px] w-[26px] rounded-full bg-peach" />
+          <div className="relative mx-auto mb-12 max-w-2xl text-center">
+            <h2 id="services-heading" className="m-0 mb-3.5 font-[family-name:var(--font-display)] text-4xl font-extrabold text-green sm:text-5xl">
+              Services
+            </h2>
+            <p className="m-0 text-lg font-semibold leading-relaxed text-ink-soft">
+              Every session is 1-on-1, online or in person.
+            </p>
+          </div>
+          <div className="mx-auto grid max-w-6xl grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6">
+            {SERVICES.map((s) => (
               <div
-                key={f.label}
-                className="flex items-center gap-3.5 rounded-2xl bg-cream px-5 py-4.5"
+                key={s.title}
+                className={`rounded-tl-[28px] rounded-tr-[28px] rounded-br-[60px] rounded-bl-[28px] px-6.5 py-8 shadow-[0_12px_0_rgba(0,0,0,0.08)] ${
+                  s.light ? "text-card-ink" : "text-white"
+                }`}
+                style={{ background: s.color }}
               >
-                <span
+                <div
                   aria-hidden="true"
-                  className={`flex h-[46px] w-[46px] flex-none -rotate-6 items-center justify-center rounded-2xl font-[family-name:var(--font-display)] text-xl font-extrabold ${
-                    f.light ? "text-card-ink" : "text-white"
+                  className={`mb-4.5 flex h-[54px] w-[54px] -rotate-6 items-center justify-center rounded-2xl font-[family-name:var(--font-display)] font-extrabold ${
+                    s.letter.length > 2 ? "text-xl" : "text-2xl"
                   }`}
-                  style={{ background: f.color }}
+                  style={{ background: "var(--color-chip-overlay)" }}
                 >
-                  {f.letter}
-                </span>
-                <span className="text-[15px] font-extrabold leading-tight text-green">
-                  {f.label}
-                </span>
+                  {s.letter}
+                </div>
+                <h3 className="m-0 mb-2.5 font-[family-name:var(--font-display)] text-xl font-bold">
+                  {s.title}
+                </h3>
+                <p className="m-0 text-[15.5px] font-semibold leading-relaxed">
+                  {s.desc}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
         {/* Founder story */}
-        <section aria-label="Founder's story" className="relative bg-white px-5 pb-16 pt-5 sm:px-16 sm:pb-24 sm:pt-8">
-          <div className="mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-[minmax(260px,0.85fr)_minmax(260px,1.15fr)] md:gap-16">
+        <section
+          id="founder"
+          aria-labelledby="founder-heading"
+          className="relative scroll-mt-20 bg-white px-5 pb-10 pt-14 sm:px-16 sm:pb-14 sm:pt-20"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 1440 60"
+            preserveAspectRatio="none"
+            className="absolute -top-px left-0 block h-[50px] w-full fill-mint-light"
+          >
+            <path d="M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,0 L0,0 Z" />
+          </svg>
+          <div className="mx-auto grid max-w-6xl items-center gap-6 md:grid-cols-[minmax(240px,0.8fr)_minmax(0,1.2fr)] md:gap-14">
             <div className="relative">
               <div
                 aria-hidden="true"
                 className="absolute left-[6%] top-[-8%] h-[110%] w-[105%] bg-mint-light"
                 style={{ borderRadius: "60% 40% 45% 55%/50% 55% 45% 50%" }}
               />
-              <div className="relative mx-auto aspect-square w-[min(320px,85vw)] overflow-hidden rounded-full border-[6px] border-white shadow-[0_16px_0_rgba(24,118,95,0.1)]">
+              <div className="relative mx-auto aspect-square w-[min(260px,70vw)] overflow-hidden rounded-full border-[6px] border-white shadow-[0_12px_0_rgba(24,118,95,0.1)]">
                 <Image
                   src="/images/founder-photo.jpg"
                   alt="Roxanne, founder of Bloom Tutoring"
                   width={1448}
                   height={1086}
-                  sizes="(max-width: 640px) 85vw, 320px"
+                  sizes="(max-width: 640px) 70vw, 260px"
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -452,22 +556,25 @@ export default function Home() {
               />
             </div>
             <div>
-              <span className="mb-4 inline-block -rotate-2 rounded-full bg-mint-light px-4 py-1.5 text-[13px] font-extrabold uppercase tracking-wider text-green">
+              <h2
+                id="founder-heading"
+                className="m-0 mb-3 font-[family-name:var(--font-display)] text-3xl font-extrabold leading-tight text-balance text-green sm:text-4xl"
+              >
                 Founder&apos;s Story
-              </span>
-              <p className="m-0 mb-4.5 font-[family-name:var(--font-display)] text-2xl font-bold leading-snug text-green sm:text-3xl">
-                <span aria-hidden="true" className="text-[1.4em] text-peach">&ldquo;</span>I started Bloom
+              </h2>
+              <p className="m-0 mb-2 font-[family-name:var(--font-display)] text-xl font-bold leading-snug text-balance text-green sm:text-2xl">
+                <span aria-hidden="true" className="text-[1.4em] leading-none text-peach">&ldquo;</span>I started Bloom
                 Tutoring because I know what it feels like to be misunderstood as a student.
                 My ADHD made traditional learning feel impossible — until I found the right
                 approach. I built this company so other children wouldn&apos;t have to find
-                it alone.<span aria-hidden="true" className="text-[1.4em] text-peach">&rdquo;</span>
+                it alone.<span aria-hidden="true" className="text-[1.4em] leading-none text-peach">&rdquo;</span>
               </p>
-              <p className="m-0 mb-6 text-base font-bold text-ink-soft">— Roxanne (Founder)</p>
-              <div className="mb-6 border-t-[3px] border-dashed border-tan" />
-              <span className="mb-4 inline-block -rotate-2 rounded-full bg-orange-light px-4 py-1.5 text-[13px] font-extrabold uppercase tracking-wider text-orange">
+              <p className="m-0 text-[15px] font-bold text-ink-soft">— Roxanne (Founder)</p>
+              <div className="my-5 border-t-[3px] border-dashed border-tan" />
+              <h3 className="m-0 mb-1.5 font-[family-name:var(--font-display)] text-lg font-bold text-green">
                 Our Team
-              </span>
-              <p className="m-0 text-lg font-semibold leading-relaxed text-ink">
+              </h3>
+              <p className="m-0 text-base font-semibold leading-relaxed text-pretty text-ink-soft">
                 Today, Bloom Tutoring is more than just me. I&apos;ve built a team of
                 experienced, carefully-selected tutors who share the same belief: every
                 child can succeed with the right support. Together, we&apos;ve helped
@@ -479,31 +586,29 @@ export default function Home() {
         </section>
 
         {/* Co-founder */}
-        <section aria-labelledby="cofounder-heading" className="relative overflow-hidden bg-white px-5 pb-16 pt-5 sm:px-16 sm:pb-24 sm:pt-8">
+        <section aria-labelledby="cofounder-heading" className="relative overflow-hidden bg-white px-5 pb-14 pt-6 sm:px-16 sm:pb-20 sm:pt-8">
           <div aria-hidden="true" className="absolute bottom-[6%] left-[2%] h-[130px] w-[130px] rounded-full bg-orange-light opacity-70" />
           <div className="cofounder-grid relative mx-auto max-w-3xl md:max-w-6xl">
-            <div className="text-center [grid-area:header] md:text-left">
-              <span className="mb-4 inline-block -rotate-2 rounded-full bg-orange-light px-4 py-1.5 text-[13px] font-extrabold uppercase tracking-wider text-orange">
-                Co-Founder
-              </span>
-              <h2 id="cofounder-heading" className="m-0 mb-3.5 font-[family-name:var(--font-display)] text-3xl font-extrabold text-green sm:text-4xl">
-                Meet Bonnie Naidoo
-              </h2>
-            </div>
+            <h2
+              id="cofounder-heading"
+              className="m-0 mb-3 font-[family-name:var(--font-display)] text-3xl font-extrabold leading-tight text-balance text-green [grid-area:header] sm:text-4xl"
+            >
+              Meet Bonnie Naidoo
+            </h2>
 
-            <div className="relative w-fit [grid-area:photo] justify-self-center">
+            <div className="relative mb-6 w-fit [grid-area:photo] justify-self-center md:mb-0">
               <div
                 aria-hidden="true"
                 className="absolute -left-[6%] -top-[8%] h-[114%] w-[112%] bg-mint-light"
                 style={{ borderRadius: "45% 55% 50% 50%/55% 45% 55% 45%" }}
               />
-              <div className="relative mx-auto aspect-square w-[min(320px,85vw)] overflow-hidden rounded-full border-[6px] border-white shadow-[0_16px_0_rgba(24,118,95,0.1)]">
+              <div className="relative mx-auto aspect-square w-[min(260px,70vw)] overflow-hidden rounded-full border-[6px] border-white shadow-[0_12px_0_rgba(24,118,95,0.1)]">
                 <Image
                   src="/images/bonnie.jpg"
                   alt="Bonnie Naidoo, Learning Support Specialist at Bloom Tutoring"
                   width={818}
                   height={1280}
-                  sizes="(max-width: 640px) 85vw, 320px"
+                  sizes="(max-width: 640px) 70vw, 260px"
                   className="h-full w-full object-cover"
                   style={{ objectPosition: "50% 22%" }}
                 />
@@ -517,121 +622,94 @@ export default function Home() {
             </div>
 
             <div className="[grid-area:text]">
-              <p className="m-0 mb-6 text-lg font-semibold leading-relaxed text-ink">
+              <p className="m-0 mb-5 text-lg font-semibold leading-relaxed text-pretty text-ink">
                 Bonnie Naidoo is an experienced educator and Learning Support Specialist who
                 is passionate about helping learners overcome challenges, build strong
                 foundations and feel confident in their ability to learn.
               </p>
 
-              <div className="mb-7 grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
-                <div className="rounded-2xl bg-mint-light px-5.5 py-5">
-                  <h3 className="m-0 mb-2.5 font-[family-name:var(--font-display)] text-lg font-bold uppercase tracking-wide text-green">
+              <div className="grid gap-4 rounded-2xl bg-mint-light px-5 py-5 sm:grid-cols-2 sm:gap-6">
+                <div>
+                  <h3 className="m-0 mb-1.5 font-[family-name:var(--font-display)] text-lg font-bold text-green">
                     Qualifications
                   </h3>
-                  <ul className="m-0 space-y-1 pl-4.5 text-base font-semibold leading-relaxed text-ink">
+                  <ul className="m-0 space-y-1 p-0 text-base font-semibold leading-snug text-ink">
                     <li>BEd, specialising in Physical Science</li>
                     <li>BEd Honours in Learning Support</li>
                   </ul>
                 </div>
-                <div className="rounded-2xl bg-peach-light px-5.5 py-5">
-                  <h3 className="m-0 mb-2.5 font-[family-name:var(--font-display)] text-lg font-bold uppercase tracking-wide text-orange">
+                <div>
+                  <h3 className="m-0 mb-1.5 font-[family-name:var(--font-display)] text-lg font-bold text-green">
                     Experience
                   </h3>
-                  <p className="m-0 text-base font-semibold leading-relaxed text-ink">
-                    10 years across CAPS, IEB and Cambridge curricula, incl. GDE and IEB
-                    Matric Marking, 3 years as Learning Support Coordinator and 4 years as
-                    Accommodations Officer.
-                  </p>
+                  <ul className="m-0 space-y-1.5 p-0 text-base font-semibold leading-snug text-ink">
+                    <li>
+                      <strong className="font-[family-name:var(--font-display)] font-extrabold text-green">10 years</strong>{" "}
+                      across CAPS, IEB and Cambridge curricula, incl. Gauteng Department of
+                      Education (GDE) and IEB Matric Marking
+                    </li>
+                    <li>
+                      <strong className="font-[family-name:var(--font-display)] font-extrabold text-green">3 years</strong>{" "}
+                      as Learning Support Coordinator
+                    </li>
+                    <li>
+                      <strong className="font-[family-name:var(--font-display)] font-extrabold text-green">4 years</strong>{" "}
+                      as Accommodations Officer
+                    </li>
+                  </ul>
                 </div>
               </div>
 
-              <p className="m-0 mb-5 text-base font-semibold leading-relaxed text-ink-soft">
+              <p className="m-0 mt-5 text-base font-semibold leading-relaxed text-pretty text-ink-soft">
                 Through these roles, Bonnie has worked alongside educational psychologists
                 and other professionals to better understand individual learners, identify
                 barriers to learning and put the right support in place.
               </p>
 
-              <div className="mb-6 border-t-[3px] border-dashed border-tan" />
+              <div className="my-5 border-t-[3px] border-dashed border-tan" />
 
-              <span className="mb-4 inline-block -rotate-2 rounded-full bg-mint-light px-4 py-1.5 text-[13px] font-extrabold uppercase tracking-wider text-green">
-                Why Learning Support?
-              </span>
-              <p className="m-0 mb-4 text-base font-semibold leading-relaxed text-ink-soft">
-                Bonnie&apos;s passion for learning support is also personal. Having
-                experienced academic struggles herself, she understands how frustrating it
-                can be when you know you are capable of more but don&apos;t have the right
-                support.
-              </p>
-              <p className="m-0 mb-4 text-base font-semibold leading-relaxed text-ink-soft">
-                That experience shaped the educator she is today. Bonnie believes that a
-                mark is only part of the story. By taking the time to understand how a
-                learner learns, identify gaps and strengthen their foundations, learners can
-                make real progress — both academically and personally.
-              </p>
-              <p className="m-0 mb-6 text-base font-semibold leading-relaxed text-ink-soft">
-                Her goal is simple: to help every learner feel capable, supported and
-                confident in their own ability to learn.
-              </p>
-
-              <p className="m-0 mb-4.5 font-[family-name:var(--font-display)] text-2xl font-bold leading-snug text-green sm:text-3xl">
-                <span aria-hidden="true" className="text-[1.4em] text-mint">&ldquo;</span>Sometimes, a
+              <p className="m-0 mb-2 font-[family-name:var(--font-display)] text-xl font-bold leading-snug text-balance text-green sm:text-2xl">
+                <span aria-hidden="true" className="text-[1.4em] leading-none text-mint">&ldquo;</span>Sometimes, a
                 learner doesn&apos;t need more work — they need the right approach.
-                <span aria-hidden="true" className="text-[1.4em] text-mint">&rdquo;</span>
+                <span aria-hidden="true" className="text-[1.4em] leading-none text-mint">&rdquo;</span>
               </p>
-              <p className="m-0 text-base font-bold text-ink-soft">— Bonnie Naidoo (Co-Founder)</p>
+              <p className="m-0 mb-4 text-[15px] font-bold text-ink-soft">— Bonnie Naidoo (Co-Founder)</p>
+
+              <details className="group">
+                <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-2.5 rounded-full bg-mint-light px-5 py-2 text-[13px] font-extrabold uppercase tracking-wider text-green [&::-webkit-details-marker]:hidden">
+                  Why Learning Support?
+                  <span
+                    aria-hidden="true"
+                    className="flex h-5 w-5 items-center justify-center rounded-full bg-mint text-base font-extrabold leading-none text-card-ink transition-transform group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <div className="mt-3 space-y-3">
+                  <p className="m-0 text-base font-semibold leading-relaxed text-pretty text-ink-soft">
+                    Bonnie&apos;s passion for learning support is also personal. Having
+                    experienced academic struggles herself, she understands how frustrating it
+                    can be when you know you are capable of more but don&apos;t have the right
+                    support.
+                  </p>
+                  <p className="m-0 text-base font-semibold leading-relaxed text-pretty text-ink-soft">
+                    That experience shaped the educator she is today. Bonnie believes that a
+                    mark is only part of the story. By taking the time to understand how a
+                    learner learns, identify gaps and strengthen their foundations, learners can
+                    make real progress — both academically and personally.
+                  </p>
+                  <p className="m-0 text-base font-semibold leading-relaxed text-pretty text-ink-soft">
+                    Her goal is simple: to help every learner feel capable, supported and
+                    confident in their own ability to learn.
+                  </p>
+                </div>
+              </details>
             </div>
           </div>
         </section>
 
-        {/* Services */}
-        <section
-          id="services"
-          aria-labelledby="services-heading"
-          className="relative overflow-hidden bg-mint-light px-5 py-16 sm:px-16 sm:py-24"
-        >
-          <div aria-hidden="true" className="animate-float-y2 absolute left-4 top-4 sm:left-[2%] sm:top-[6%] h-[26px] w-[26px] rounded-full bg-peach" />
-          <div className="relative mx-auto mb-12 max-w-2xl text-center">
-            <h2 id="services-heading" className="m-0 mb-3.5 font-[family-name:var(--font-display)] text-4xl font-extrabold text-green sm:text-5xl">
-              Services
-            </h2>
-            <p className="m-0 text-lg font-semibold leading-relaxed text-ink-soft">
-              Bloom Tutoring supports students from school readiness through Grade 12,
-              across all subjects.
-            </p>
-          </div>
-          <div className="mx-auto grid max-w-6xl grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6">
-            {SERVICES.map((s) => (
-              <div
-                key={s.title}
-                className={`rounded-tl-[28px] rounded-tr-[28px] rounded-br-[60px] rounded-bl-[28px] px-6.5 py-8 shadow-[0_12px_0_rgba(0,0,0,0.08)] transition-transform hover:-translate-y-2 hover:rotate-1 ${
-                  s.light ? "text-card-ink" : "text-white"
-                }`}
-                style={{ background: s.color }}
-              >
-                <div
-                  aria-hidden="true"
-                  className="mb-4.5 flex h-[54px] w-[54px] -rotate-6 items-center justify-center rounded-2xl font-[family-name:var(--font-display)] text-2xl font-extrabold"
-                  style={{ background: "var(--color-chip-overlay)" }}
-                >
-                  {s.letter}
-                </div>
-                <h3 className="m-0 mb-2.5 font-[family-name:var(--font-display)] text-xl font-bold">
-                  {s.title}
-                </h3>
-                <p className="m-0 text-[15.5px] font-semibold leading-relaxed opacity-90">
-                  {s.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-          <p className="mx-auto mt-11 max-w-xl text-center text-lg font-bold text-green">
-            From your child&apos;s very first steps into learning to their toughest AP exam
-            — we&apos;re with them every step of the way.
-          </p>
-        </section>
-
         {/* Why Bloom Tutoring */}
-        <section id="why" aria-labelledby="why-heading" className="relative overflow-hidden bg-green px-5 py-16 sm:px-16 sm:py-28">
+        <section id="why" aria-labelledby="why-heading" className="relative scroll-mt-16 overflow-hidden bg-green px-5 py-16 sm:px-16 sm:py-28">
           <svg
             aria-hidden="true"
             viewBox="0 0 1440 60"
@@ -660,7 +738,7 @@ export default function Home() {
             {WHY_ITEMS.map((w) => (
               <div
                 key={w.n}
-                className="flex items-start gap-5 rounded-2xl bg-white/[.09] px-7 py-6"
+                className="flex items-start gap-5 rounded-2xl bg-card-ink/30 px-7 py-6"
               >
                 <div aria-hidden="true" className="flex h-[34px] w-[34px] flex-none items-center justify-center rounded-full bg-peach font-[family-name:var(--font-display)] text-sm font-extrabold text-card-ink">
                   {w.n}
@@ -679,36 +757,38 @@ export default function Home() {
         </section>
 
         {/* Testimonials */}
-        <section aria-labelledby="testimonials-heading" className="relative bg-white px-5 py-16 sm:px-16 sm:py-24">
-          <h2 id="testimonials-heading" className="m-0 mb-11 text-center font-[family-name:var(--font-display)] text-3xl font-extrabold text-green sm:text-4xl">
-            What Families Say
-          </h2>
-          <div className="mx-auto grid max-w-5xl grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6.5">
-            {TESTIMONIALS.map((t) => (
-              <div
-                key={t.who}
-                className="rounded-3xl bg-peach-light px-6.5 pb-6.5 pt-7.5 text-center"
-              >
+        {SHOW_TESTIMONIALS && (
+          <section aria-labelledby="testimonials-heading" className="relative bg-white px-5 py-16 sm:px-16 sm:py-24">
+            <h2 id="testimonials-heading" className="m-0 mb-11 text-center font-[family-name:var(--font-display)] text-3xl font-extrabold text-green sm:text-4xl">
+              What Families Say
+            </h2>
+            <div className="mx-auto grid max-w-5xl grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6.5">
+              {TESTIMONIALS.map((t) => (
                 <div
-                  className="mx-auto mb-4 h-[76px] w-[76px] overflow-hidden rounded-full border-4 bg-white"
-                  style={{ borderColor: t.ring }}
+                  key={t.who}
+                  className="rounded-3xl bg-peach-light px-6.5 pb-6.5 pt-7.5 text-center"
                 >
-                  <PlaceholderPhoto label="Photo" />
+                  <div
+                    className="mx-auto mb-4 h-[76px] w-[76px] overflow-hidden rounded-full border-4 bg-white"
+                    style={{ borderColor: t.ring }}
+                  >
+                    <PlaceholderPhoto label="Photo" />
+                  </div>
+                  <p className="m-0 mb-3.5 text-base font-bold leading-relaxed text-ink-warm">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <p className="m-0 text-sm font-extrabold text-orange">{t.who}</p>
                 </div>
-                <p className="m-0 mb-3.5 text-base font-bold leading-relaxed text-ink-warm">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <p className="m-0 text-sm font-extrabold text-orange">{t.who}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-8 text-center text-[13px] italic text-disclaimer">
-            Sample family feedback — swap in real reviews as they come in.
-          </p>
-        </section>
+              ))}
+            </div>
+            <p className="mt-8 text-center text-[13px] italic text-disclaimer">
+              Sample family feedback — swap in real reviews as they come in.
+            </p>
+          </section>
+        )}
 
         {/* FAQ */}
-        <section id="faq" aria-labelledby="faq-heading" className="relative bg-peach-light px-5 py-16 sm:px-16 sm:py-24">
+        <section id="faq" aria-labelledby="faq-heading" className="relative scroll-mt-16 bg-peach-light px-5 py-16 sm:px-16 sm:py-24">
           <h2 id="faq-heading" className="m-0 mb-11 text-center font-[family-name:var(--font-display)] text-3xl font-extrabold text-green sm:text-4xl">
             Questions, Answered
           </h2>
@@ -731,7 +811,7 @@ export default function Home() {
                       {f.q}
                       <span
                         aria-hidden="true"
-                        className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-mint text-lg font-extrabold text-white transition-transform"
+                        className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-mint text-lg font-extrabold text-card-ink transition-transform"
                         style={{ transform: open ? "rotate(45deg)" : "rotate(0deg)" }}
                       >
                         +
@@ -755,7 +835,7 @@ export default function Home() {
         </section>
 
         {/* Contact */}
-        <section id="contact" aria-labelledby="contact-heading" className="relative overflow-hidden bg-cream px-5 py-16 sm:px-16 sm:py-28">
+        <section id="contact" aria-labelledby="contact-heading" className="relative scroll-mt-16 overflow-hidden bg-cream px-5 py-16 sm:px-16 sm:py-28">
           <div aria-hidden="true" className="animate-float-y absolute right-[4%] top-[10%] h-[18px] w-[18px] rounded-full bg-mint" />
           <div
             aria-hidden="true"
@@ -765,7 +845,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-5xl items-start gap-8 md:grid-cols-[minmax(240px,1fr)_minmax(280px,1.3fr)] md:gap-14">
             <div>
               <h2 id="contact-heading" className="m-0 mb-4 font-[family-name:var(--font-display)] text-3xl font-extrabold text-green sm:text-4xl">
-                Let&apos;s Chat.
+                Let&apos;s Talk.
               </h2>
               <p className="m-0 mb-7 text-lg font-semibold leading-relaxed text-ink-soft">
                 Tell us a bit about your child and we&apos;ll get back to you to talk
@@ -782,12 +862,24 @@ export default function Home() {
               </a>
               <a
                 href="tel:0682414458"
-                className="flex items-center gap-3.5 rounded-2xl bg-white px-5 py-4 font-bold text-green transition-transform hover:translate-x-1"
+                className="mb-3.5 flex items-center gap-3.5 rounded-2xl bg-white px-5 py-4 font-bold text-green transition-transform hover:translate-x-1"
               >
                 <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-light text-lg">
                   ☏
                 </span>
                 068 241 4458
+              </a>
+              <a
+                href={WHATSAPP_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3.5 rounded-2xl bg-white px-5 py-4 font-bold text-green transition-transform hover:translate-x-1"
+              >
+                <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-full bg-mint-light">
+                  <WhatsAppIcon className="h-5 w-5" />
+                </span>
+                Chat on WhatsApp
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </div>
             <div className="rounded-[28px] bg-white p-6.5 shadow-[0_14px_0_rgba(24,118,95,0.08)] sm:p-10">
@@ -801,8 +893,9 @@ export default function Home() {
                     name="myName"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    autoComplete="name"
                     placeholder="Jane Smith"
-                    className="w-full rounded-xl border-2 border-tan px-4 py-3.5 text-base font-[family-name:var(--font-sans)] outline-none focus:border-green"
+                    className="w-full rounded-xl border-2 border-tan-strong px-4 py-3.5 text-base font-[family-name:var(--font-sans)] text-ink placeholder:text-disclaimer focus:border-green"
                   />
                 </div>
                 <div>
@@ -836,10 +929,11 @@ export default function Home() {
                     id="phone-number"
                     name="phoneNumber"
                     type="tel"
+                    autoComplete="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="082 123 4567"
-                    className="w-full rounded-xl border-2 border-tan px-4 py-3.5 text-base font-[family-name:var(--font-sans)] outline-none focus:border-green"
+                    className="w-full rounded-xl border-2 border-tan-strong px-4 py-3.5 text-base font-[family-name:var(--font-sans)] text-ink placeholder:text-disclaimer focus:border-green"
                   />
                 </div>
                 <div>
@@ -851,8 +945,8 @@ export default function Home() {
                     name="childGrade"
                     value={grade}
                     onChange={(e) => setGrade(e.target.value)}
-                    placeholder="e.g. Grade 6  Maths and English"
-                    className="w-full rounded-xl border-2 border-tan px-4 py-3.5 text-base font-[family-name:var(--font-sans)] outline-none focus:border-green"
+                    placeholder="e.g. Grade 6, Maths and English"
+                    className="w-full rounded-xl border-2 border-tan-strong px-4 py-3.5 text-base font-[family-name:var(--font-sans)] text-ink placeholder:text-disclaimer focus:border-green"
                   />
                 </div>
                 <div>
@@ -866,12 +960,12 @@ export default function Home() {
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Tell us a little about your child..."
                     rows={4}
-                    className="w-full resize-y rounded-xl border-2 border-tan px-4 py-3.5 text-base font-[family-name:var(--font-sans)] outline-none focus:border-green"
+                    className="w-full resize-y rounded-xl border-2 border-tan-strong px-4 py-3.5 text-base font-[family-name:var(--font-sans)] text-ink placeholder:text-disclaimer focus:border-green"
                   />
                 </div>
                 <a
                   href={mailtoHref}
-                  className="rounded-full bg-orange py-4 text-center text-[17px] font-extrabold text-white shadow-[0_6px_0_var(--color-orange-dark)] transition-transform hover:translate-y-[3px] hover:shadow-[0_3px_0_var(--color-orange-dark)]"
+                  className="rounded-full bg-orange py-4 text-center text-[17px] font-extrabold text-white shadow-[0_6px_0_var(--color-orange-dark)] transition-transform hover:translate-y-[3px] hover:shadow-[0_3px_0_var(--color-orange-dark)] active:translate-y-[3px] active:shadow-[0_3px_0_var(--color-orange-dark)]"
                 >
                   Send Enquiry →
                 </a>
@@ -882,7 +976,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="relative bg-green px-5 pb-8 pt-10 sm:px-16">
+      <footer id="apply" className="relative scroll-mt-16 bg-green px-5 pb-24 pt-10 sm:px-16 sm:pb-8 [&_a:focus-visible]:outline-white">
         <svg
           aria-hidden="true"
           viewBox="0 0 1440 30"
@@ -894,7 +988,7 @@ export default function Home() {
             fill="var(--color-green)"
           />
         </svg>
-        <div className="flex flex-wrap items-center justify-between gap-3.5">
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
           <div className="flex items-center gap-2 rounded-xl bg-white px-3.5 py-2">
             <Image
               src="/images/flower.png"
@@ -908,16 +1002,37 @@ export default function Home() {
               <span className="font-[family-name:var(--font-display)] text-base font-extrabold text-green">
                 bloom
               </span>
-              <span className="mt-0.5 text-[8px] font-extrabold uppercase tracking-[0.18em] text-orange">
+              <span className="mt-0.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange">
                 Tutoring
               </span>
             </span>
           </div>
-          <div className="text-sm font-semibold text-mist-on-green-soft">
-            © 2026 Bloom Tutoring · Bloomtutoringadmin@gmail.com · 068 241 4458
-          </div>
+          <a
+            href={TUTOR_APPLY_HREF}
+            className="inline-flex min-h-11 items-center text-[15px] font-extrabold text-white underline decoration-2 underline-offset-4"
+          >
+            Are you a tutor? Join our team →
+          </a>
         </div>
+        <p className="mb-0 mt-5 text-sm font-semibold text-mist-on-green-soft">
+          © 2026 Bloom Tutoring ·{" "}
+          <a
+            href="mailto:Bloomtutoringadmin@gmail.com"
+            className="inline-block py-2 text-mist-on-green-soft underline underline-offset-4"
+          >
+            Bloomtutoringadmin@gmail.com
+          </a>{" "}
+          ·{" "}
+          <a
+            href="tel:0682414458"
+            className="inline-block py-2 text-mist-on-green-soft underline underline-offset-4"
+          >
+            068 241 4458
+          </a>
+        </p>
       </footer>
+
+      <WhatsAppFab hidden={contactInView} />
     </div>
   );
 }

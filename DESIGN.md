@@ -14,6 +14,7 @@ colors:
   peach-mist: "#fdf3ea"
   sand-tan: "#e9ddc8"
   sand-tan-deep: "#d9c9a8"
+  field-border: "#968465"
   card-ink: "#2f3d38"
   ink: "#3a4a44"
   ink-soft: "#4a5952"
@@ -122,6 +123,7 @@ The palette is a garden bed at midday: deep growth greens anchor the page, warm 
 - **Garden Cream** (`#fbf6ee`): The page ground. Body background, header background, contact-section background. Never pure white — always slightly warm.
 - **Sand Tan** (`#e9ddc8`): Dashed section dividers, input borders, hairline separators between founder-story blocks.
 - **Sand Tan Deep** (`#d9c9a8`): The header's dashed border-bottom — a slightly stronger tan for the one divider that's always visible.
+- **Field Border** (`#968465`): Form-control borders only. Sand Tan sits at ~1.3:1 on white, which fails the 3:1 non-text contrast a control edge needs; this darker tan clears it (~3.6:1) while staying in the warm palette.
 - **Card Ink** (`#2f3d38`): Dark text/icon color used only for content sitting directly on Sprout Mint or Peach Bloom fills, where white text fails contrast (service cards, feature-strip icon tiles, the "4+" hero stat bubble, the Why Bloom Tutoring numbered badges). Deliberately distinct from Leaf Green — Leaf Green also fails on these two fills.
 - **Ink / Ink Soft / Ink Warm** (`#3a4a44` / `#4a5952` / `#4a3b30`): Body-copy tints used across hero subhead, founder/co-founder prose, and testimonial quotes respectively. Previously used ad hoc in code without being documented here; formalized as tokens.
 - **Disclaimer** (`#786e60`): Muted caption color for the testimonials sample-content notice — darkened from an earlier undocumented value so 13px italic text clears AA contrast on white.
@@ -181,8 +183,8 @@ Rounded is the default everywhere: buttons and badges are fully pill-shaped (`ro
 - **Internal Padding:** ~26–32px.
 
 ### Inputs / Fields
-- **Style:** White background, 2px Sand Tan border, 12px radius, generous padding (14px vertical, 16px horizontal).
-- **Focus:** Border shifts to solid Leaf Green; no glow/ring effect. Every field has a real `<label for>` bound to its input's `id` — labels are never visual-only.
+- **Style:** White background, 2px Field Border, 12px radius, generous padding (14px vertical, 16px horizontal).
+- **Focus:** Border shifts to solid Leaf Green, and the global `:focus-visible` ring (Leaf Green, 3px) shows for keyboard users; the browser outline is never suppressed. Placeholder text uses Disclaimer (`#786e60`) so it clears 4.5:1. Every field has a real `<label for>` bound to its input's `id` — labels are never visual-only.
 
 ### Navigation
 - Sticky header, translucent Garden Cream background with backdrop blur, 3px dashed Sand Tan Deep bottom border. Links are extrabold Leaf Green text, no underline; the CTA link is styled as a primary button (rotated -2deg) rather than a plain nav link.

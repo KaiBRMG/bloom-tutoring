@@ -5,6 +5,8 @@
   --color-cream: #fbf6ee;
   --color-tan: #e9ddc8;
   --color-tan-dark: #d9c9a8;
+  /* Form-control border: ≥3:1 against white (WCAG 1.4.11), unlike the decorative tans. */
+  --color-tan-strong: #968465;
 
   /* Greens */
   --color-green: #18765f;
@@ -50,6 +52,7 @@
   --color-cream: var(--color-cream);
   --color-tan: var(--color-tan);
   --color-tan-dark: var(--color-tan-dark);
+  --color-tan-strong: var(--color-tan-strong);
   --color-green: var(--color-green);
   --color-mint: var(--color-mint);
   --color-mint-light: var(--color-mint-light);
@@ -70,11 +73,14 @@
   --color-chip-overlay: var(--color-chip-overlay);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background: var(--color-cream);
   font-family: var(--font-nunito), sans-serif;
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -154,10 +160,9 @@ body {
 .cofounder-grid {
   display: grid;
   grid-template-areas:
-    "header"
     "photo"
+    "header"
     "text";
-  gap: 2rem;
 }
 
 @media (min-width: 768px) {
@@ -173,6 +178,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .animate-float-y,
   .animate-float-y2,
   .animate-wiggle {
