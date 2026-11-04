@@ -374,14 +374,55 @@ export default function Home() {
           <div aria-hidden="true" className="animate-float-y absolute left-[3%] top-[52%] h-4 w-4 rounded-full bg-green" />
 
           <div className="relative mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-[minmax(280px,1fr)_minmax(260px,0.9fr)] md:gap-12">
-            <div>
+            {/* Mobile: the student sits behind the copy; her face stays clear and the
+                copy captions over the lower photo as it fades into the cream. */}
+            <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 md:hidden">
+              <div
+                className="animate-pop-in relative aspect-square w-[min(92vw,420px)]"
+                style={{
+                  animationDelay: "0.1s",
+                  maskImage: "linear-gradient(to bottom, #000 40%, rgba(0,0,0,0.18) 60%, transparent 86%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, #000 40%, rgba(0,0,0,0.18) 60%, transparent 86%)",
+                }}
+              >
+                <div
+                  className="absolute left-[20%] top-[4%] h-[52%] w-[60%] bg-mint opacity-90"
+                  style={{ borderRadius: "48% 52% 55% 45%/52% 48% 55% 45%" }}
+                />
+                <Image
+                  src="/images/student.png"
+                  alt=""
+                  width={490}
+                  height={490}
+                  sizes="92vw"
+                  className="relative h-full w-full object-contain"
+                />
+              </div>
+            </div>
+            <div
+              className="animate-float-y2 absolute right-0 top-1 flex -rotate-3 items-center gap-2 rounded-2xl bg-white px-3 py-2 shadow-[0_6px_12px_-4px_rgba(24,118,95,0.18)] md:hidden"
+            >
+              <span
+                aria-hidden="true"
+                className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-peach font-[family-name:var(--font-display)] text-sm font-extrabold text-card-ink"
+              >
+                4+
+              </span>
+              <span className="text-xs font-extrabold leading-tight text-green">
+                Years
+                <br />
+                Helping Kids Bloom
+              </span>
+            </div>
+
+            <div className="relative pt-[calc(min(92vw,420px)*0.42)] text-center md:pt-0 md:text-left">
               <span className="mb-5 inline-flex -rotate-2 items-center gap-2 rounded-full bg-white px-4 py-2 text-[13px] font-extrabold uppercase tracking-wide text-orange shadow-[0_4px_0_rgba(24,118,95,0.08)]">
                 <span aria-hidden="true" className="h-2 w-2 rounded-full bg-mint" /> School Readiness → Grade
                 12
               </span>
               <h1
                 id="hero-heading"
-                className="m-0 mb-2 font-[family-name:var(--font-display)] text-5xl font-extrabold leading-[1.03] sm:text-6xl md:text-7xl"
+                className="m-0 mb-2 font-[family-name:var(--font-display)] text-[2.5rem] font-extrabold leading-[1.03] sm:text-6xl md:text-7xl"
               >
                 <span className="animate-pop-in block text-green">Learning that</span>
                 <span className="relative mb-5 mt-2 inline-block">
@@ -408,29 +449,29 @@ export default function Home() {
                 </span>
               </h1>
               <p
-                className="animate-pop-in m-0 mb-7 max-w-lg text-lg font-semibold leading-relaxed text-ink sm:text-xl"
+                className="animate-pop-in mx-auto mb-6 mt-0 max-w-lg text-base font-semibold leading-relaxed text-ink sm:text-xl md:mx-0 md:mb-7"
                 style={{ animationDelay: "0.18s" }}
               >
                 Bloom Tutoring helps students move from feeling overwhelmed to feeling
                 confident — with tutors who meet every child exactly where they are.
               </p>
-              <div className="animate-pop-in flex flex-wrap gap-4" style={{ animationDelay: "0.3s" }}>
+              <div className="animate-pop-in flex flex-wrap justify-center gap-3 md:justify-start md:gap-4" style={{ animationDelay: "0.3s" }}>
                 <a
                   href="#contact"
-                  className="inline-block rounded-full bg-orange px-8 py-4 text-lg font-extrabold text-white shadow-[0_7px_0_var(--color-orange-dark)] transition-transform hover:translate-y-1 hover:shadow-[0_3px_0_var(--color-orange-dark)] active:translate-y-1 active:shadow-[0_3px_0_var(--color-orange-dark)]"
+                  className="inline-block rounded-full bg-orange px-6 py-3.5 text-base font-extrabold md:px-8 md:py-4 md:text-lg text-white shadow-[0_7px_0_var(--color-orange-dark)] transition-transform hover:translate-y-1 hover:shadow-[0_3px_0_var(--color-orange-dark)] active:translate-y-1 active:shadow-[0_3px_0_var(--color-orange-dark)]"
                 >
                   Let&apos;s Talk
                 </a>
                 <a
                   href="#services"
-                  className="inline-block rounded-full border-[3px] border-green bg-white px-8 py-4 text-lg font-extrabold text-green transition-colors hover:bg-green hover:text-white active:bg-green active:text-white"
+                  className="inline-block rounded-full border-[3px] border-green bg-white px-6 py-3.5 text-base font-extrabold md:px-8 md:py-4 md:text-lg text-green transition-colors hover:bg-green hover:text-white active:bg-green active:text-white"
                 >
                   See Our Services
                 </a>
               </div>
             </div>
 
-            <div className="animate-pop-in relative justify-self-center" style={{ animationDelay: "0.2s" }}>
+            <div className="animate-pop-in relative hidden justify-self-center md:block" style={{ animationDelay: "0.2s" }}>
               <div
                 aria-hidden="true"
                 className="absolute -left-[10%] -top-[6%] h-[112%] w-[118%] bg-mint"
