@@ -348,11 +348,11 @@ export default function Home() {
                 copy captions over the lower photo as it fades into the cream. */}
             <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 md:hidden">
               <div
-                className="animate-pop-in relative aspect-square w-[min(92vw,420px)]"
+                className="animate-pop-in relative aspect-square w-[min(80vw,360px)]"
                 style={{
                   animationDelay: "0.1s",
-                  maskImage: "linear-gradient(to bottom, #000 38%, rgba(0,0,0,0.12) 50%, transparent 72%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, #000 38%, rgba(0,0,0,0.12) 50%, transparent 72%)",
+                  maskImage: "linear-gradient(to bottom, #000 60%, rgba(0,0,0,0.4) 76%, transparent 96%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, #000 60%, rgba(0,0,0,0.4) 76%, transparent 96%)",
                 }}
               >
                 <div
@@ -364,7 +364,7 @@ export default function Home() {
                   alt=""
                   width={490}
                   height={490}
-                  sizes="92vw"
+                  sizes="80vw"
                   className="relative h-full w-full object-contain"
                 />
               </div>
@@ -385,14 +385,14 @@ export default function Home() {
               </span>
             </div>
 
-            <div className="relative flex flex-col pt-[calc(min(92vw,420px)*0.46)] text-center md:block md:pt-0 md:text-left">
+            <div className="relative flex flex-col pt-[calc(min(80vw,360px)*0.68)] text-center md:block md:pt-0 md:text-left">
               <span className="order-last mt-7 inline-flex -rotate-2 items-center self-center md:mb-5 md:mt-0 gap-2 rounded-full bg-white px-4 py-2 text-[13px] font-extrabold uppercase tracking-wide text-orange shadow-[0_4px_0_rgba(24,118,95,0.08)]">
                 <span aria-hidden="true" className="h-2 w-2 rounded-full bg-mint" /> School Readiness → Grade
                 12
               </span>
               <h1
                 id="hero-heading"
-                className="m-0 mb-2 font-[family-name:var(--font-display)] text-4xl font-extrabold leading-[1.03] sm:text-6xl md:text-7xl"
+                className="m-0 mb-2 font-[family-name:var(--font-display)] text-4xl font-extrabold leading-[1.03] [text-shadow:0_2px_14px_var(--color-cream),0_0_4px_var(--color-cream)] sm:text-6xl md:text-7xl md:[text-shadow:none]"
               >
                 <span className="animate-pop-in block text-green">Learning that</span>
                 <span className="relative mb-5 mt-2 inline-block">
